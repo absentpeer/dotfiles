@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#Load each configuration
+. ~/dotfiles/bash/env
+. ~/dotfiles/bash/config
+. ~/dotfiles/bash/aliases
+. ~/dotfiles/bash/modules

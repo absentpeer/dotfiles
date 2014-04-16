@@ -1,0 +1,4 @@
+Host newton
+	HostName newlogin.newton.utk.edu
+	Port = 22
+	User = bpeters7
