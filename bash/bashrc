@@ -5,3 +5,4 @@
 . ~/dotfiles/bash/config
 . ~/dotfiles/bash/aliases
 . ~/dotfiles/bash/modules
+. ~/dotfiles/bash/weather
