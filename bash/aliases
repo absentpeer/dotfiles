@@ -3,3 +3,4 @@
 alias class="cd ~/Dropbox/Things/Class/2014_S1/"
 alias research="cd ~/Dropbox/Things/Research"
 alias music="cd /media/storage/Music"
+alias SIMNRA="wine ~/.wine/drive_c/Program\ Files\ \(x86\)/MPI\ fuer\ Plasmaphysik/SIMNRA\ 6.06/Simnra.exe"
