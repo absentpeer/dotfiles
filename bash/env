@@ -1,1 +1,4 @@
 #!/bin/bash
+
+export SIESTA_SCRIPT=/home/ben/scratch/siesta/Obj/run_siesta.py
+export SIESTA_PP_PATH=/home/ben/scratch/siesta/mypps

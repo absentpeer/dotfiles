@@ -1,4 +1,22 @@
 Host newton
 	HostName newlogin.newton.utk.edu
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/newton/id_rsa
 	Port = 22
 	User = bpeters7
+
+Host hopper
+	HostName hopper.nersc.gov
+    IdentityFile ~/.ssh/hopper/id_rsa
+	Port = 22
+	User = bpeters
+
+Host edison
+    HostName edison.nersc.gov
+    Port = 22
+    User = bpeters
+
+Host cori
+    HostName cori.nersc.gov
+    Port = 22
+    User = bpeters

@@ -1,0 +1,78 @@
+# settings
+set adjust-open                 best-fit
+set guioptions                  s
+set font                        "Inconsolata 12"
+set show-scrollbars             true
+set window-title-basename       true
+set statusbar-basename          true
+set statusbar-v-padding         10
+set statusbar-h-padding         4
+
+# window settings
+set window-width                960
+set window-height               1020
+
+#set page-store-threshold        1000
+#set page-store-interval         1000
+
+set selection-clipboard         clipboard
+
+# colors
+set default-bg                  "#1d1d1e" #base00
+set default-fg                  "#f0ede3" #base07
+
+set inputbar-bg                 "#3b3b3a" #base01
+set inputbar-fg                 "#f0ede3" #base07
+
+set statusbar-bg                "#3b3b3a" #base01
+set statusbar-fg                "#b3b1aa" #base05
+
+set tabbar-bg                   "#3b3b3a" #base01
+set tabbar-fg                   "#b3b1aa" #base05
+
+set tabbar-focus-bg             "#777672" #base03
+set tabbar-focus-fg             "#b3b1aa" #base05
+
+set completion-bg               "#595856" #base02
+set completion-fg               "#a5cdce" #base0C
+
+set completion-group-bg         "#595856" #base02
+set completion-group-fg         "#a5cdce" #base0C
+
+set completion-highlight-bg     "#595856" #base02
+set completion-highlight-fg     "#a5cdce" #base0C
+
+set notification-error-bg       "#3b3b3a" #base01
+set notification-error-fg       "#e65933" #base08
+
+set notification-warning-bg     "#3b3b3a" #base01
+set notification-warning-fg     "#fed535" #base0A
+
+set highlight-active-color      "#ff8200" #base09
+set highlight-color             "#1480a7" #base0D
+
+set highlight-transparency      0.3
+
+set recolor                     "true"
+set recolor-keephue             "true"
+set recolor-reverse-video       "true"
+
+set recolor-darkcolor           "#f0ede3" #base07
+set recolor-lightcolor          "#1d1d1e" #base00
+
+#base00 #1d1d1e
+#base01 #3b3b3a
+#base02 #595856
+#base03 #777672
+#base04 #95948e
+#base05 #b3b1aa
+#base06 #d1cfc6
+#base07 #f0ede3
+#base08 #e65933
+#base09 #ff8200
+#base0A #fed535
+#base0B #abc178
+#base0C #a5cdce
+#base0D #1480a7
+#base0E #895e92
+#base0F #8d2048

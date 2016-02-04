@@ -1,0 +1,213 @@
+" Use Vim settings rather than Vi settings (much better)
+" Must set this first as it changes other settings
+set nocompatible
+"================================================================================
+" General Config
+"================================================================================
+"let mapleader = "\<Space>"
+let mapleader = ","
+set mouse=a
+set number 			            " Always show line numbers
+set backspace=indent,eol,start 	" Allow backspace in insert mode
+set history=1000		        " Store lots of :cmdline history
+set showcmd			            " Show incomplete cmds at the bottom
+set showmode			        " Show current mode at the bottom
+set gcr=a:blinkon0		        " Disable cursor blink
+set visualbell			        " No sounds
+set autoread			        " Reload files changed outside of vim
+set scrolloff=12345678912345678 " Keep cursor in the middle of the screen
+set colorcolumn=81              " Sets the number of columns to 80.
+set hidden			            " This makes vim act like all other editors
+			    	            " Buffers can exist in the background w/out
+			    	            " being in a window
+set viminfo+=n~/.vim/viminfo 
+syntax on			            " Syntax highlighting on
+autocmd BufWinEnter * if line2byte(line("$") + 1) > 1000000 | syntax clear | endif
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Color settings
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+"let g:base16_shell_path='/home/ben/builds/base16-builder/output/shell/'
+let base16colorspace=256
+set t_Co=16
+set background=dark
+colorscheme base16-felt
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Search settings
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+set hlsearch                    " Search highlighting
+set incsearch                   " Search like in modern browsers
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+set nofoldenable                " no folding when opening documents
+filetype off		            " turn off file type
+"================================================================================
+" Plugin configuration
+"================================================================================
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Vundle Initialization 
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Initialize vundle:
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+" Let vundle manage vundle:
+Bundle 'gmarik/vundle'
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Installed bundles
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+"--------------------------------------------------------------------------------
+" Nerd Tree
+"--------------------------------------------------------------------------------
+Bundle 'scrooloose/nerdtree'
+" open/close nerdtree with <F2>
+map <F2> :NERDTreeToggle<CR>
+"--------------------------------------------------------------------------------
+" Syntastic
+"--------------------------------------------------------------------------------
+Bundle 'scrooloose/syntastic'
+" Set what to ignore from syntastic
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_python_checker_args='--ignore=C0111,W0611,C0103,W0312'
+"--------------------------------------------------------------------------------
+" YouCompleteMe 
+"--------------------------------------------------------------------------------
+Bundle 'Valloric/YouCompleteMe'
+let g:clang_user_options='|| exit 0'
+let g:ycm_autoclose_preview_window_after_completion=1
+"--------------------------------------------------------------------------------
+" vim-slime
+"--------------------------------------------------------------------------------
+" This allows REPL like stuff with vim + tmux
+Bundle 'jpalardy/vim-slime'
+let g:slime_target = "tmux"
+"--------------------------------------------------------------------------------
+" Indent guides
+"--------------------------------------------------------------------------------
+Bundle 'nathanaelkane/vim-indent-guides'
+" Turn off auto colors
+let g:indent_guides_auto_colors = 0
+" Manually set the dark and light colors to show differently
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=19
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=18
+"--------------------------------------------------------------------------------
+" Auto-pairs
+"--------------------------------------------------------------------------------
+Bundle 'jiangmiao/auto-pairs'
+" Disable built in shortcuts; define our own
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutJump = ''
+" remove and replace the shortcuts with mode senstive ones
+nmap <Leader>t :call AutoPairsToggle()<CR>
+imap <buffer> <silent> <C-e> <C-R>=AutoPairsFastWrap()<CR>
+"--------------------------------------------------------------------------------
+" vim surround
+"--------------------------------------------------------------------------------
+Bundle 'tpope/vim-surround'
+"--------------------------------------------------------------------------------
+" Easy Motion 
+"--------------------------------------------------------------------------------
+Bundle 'easymotion/vim-easymotion'
+"--------------------------------------------------------------------------------
+" Easy align
+"--------------------------------------------------------------------------------
+Bundle 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)"
+"--------------------------------------------------------------------------------
+" Ultisnips
+"--------------------------------------------------------------------------------
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+" Trigger configuration. Do not use <tab> if you use YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"================================================================================
+" More options
+"================================================================================
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Turn off swap files
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+set noswapfile
+set nobackup
+set nowb
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Persistent Undo 
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+if has('persisten_undo')
+	silent !mkdir ~/.vim/backups > /dev/null 2>&1
+	set undodir=~/.vim/backups
+	set undofile
+endif
+
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Indentation
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+
+filetype plugin on
+filetype indent on
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\»\─,trail:─,eol:\«,space:·
+set nolist                          " Disable list characters
+nmap <leader>a :set list!<cr>
+" set wrap                          " Don't wrap lines
+set formatoptions=tcq1
+set lbr                             " Wrap lines at convenient points
+set display=lastline                " Display last line when wrapping
+
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Status line:
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Always show the status line
+set laststatus=2
+" Format the status line
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE '
+    en
+    return ''
+endfunction
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+" Shortcuts and Keybinds
+"=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+noremap gV `[v`]
+" Map leader + y, d, and p to use the system buffer
+vmap <Leader>y "+y 
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+nmap ; :
+" run python code after hitting <F9>
+autocmd FileType python nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+map j gj
+map k gk
+map q: :q
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Return to last edit position when opening files (You want this!)
+autocmd BufReadPost *
+     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+     \ exe "normal! g`\"" |
+     \ endif

@@ -6,3 +6,4 @@
 . ~/dotfiles/bash/aliases
 . ~/dotfiles/bash/modules
 . ~/dotfiles/bash/weather
+. ~/dotfiles/bash/functs

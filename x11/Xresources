@@ -1,0 +1,88 @@
+! Base17 Eighties
+! Scheme: Chris Kempson (http://chriskempson.com)
+!
+! Base16 utk
+! Scheme: Benjamin Petersen
+
+##define base00 #1d1d1e
+##define base01 #3b3b3a
+##define base02 #595856
+##define base03 #777672
+##define base04 #95948e
+##define base05 #b3b1aa
+##define base06 #d1cfc6
+##define base07 #f0ede3
+##define base08 #e65933
+##define base09 #ff8200
+##define base0A #fed535
+##define base0B #abc178
+##define base0C #a5cdce
+##define base0D #1480a7
+##define base0E #895e92
+##define base0F #8d2048
+
+#define base00 #181c20
+#define base01 #242a2f
+#define base02 #4a453c
+#define base03 #686459
+#define base04 #888478
+#define base05 #a9a699
+#define base06 #cac9c0
+#define base07 #ededeb
+#define base08 #9b6b6c
+#define base09 #8e7254
+#define base0A #7d784c
+#define base0B #4f8261
+#define base0C #468085
+#define base0D #517c94
+#define base0E #77739a
+#define base0F #96698b
+*.foreground:   base07
+*.background:   base00
+*.cursorColor:  base07
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base07
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base05
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
+
+URxvt*font:                           xft:Inconsolata:bold:condensed:size=14
+URxvt*boldFont:                       xft:Inconsolata:bold:size=14
+URxvt*scrollBar:                      false
+URxvt*termName:                       rxvt
+URxvt*iconFile:                       /usr/share/icons/Numix-Circle/48x48/apps/terminal.svg
+URxvt*letterSpace:                    -2
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+
+! Here we add support for xft fonts:
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
